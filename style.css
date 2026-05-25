@@ -1,0 +1,3824 @@
+/* 
+   COESO - Concreto • Estrutura • Obras
+   Sistema de Design & Estilização Premium
+   Paleta Comercial: 50% Azul Escuro | 30% Branco | 20% Azul Claro
+*/
+
+/* --- Variáveis Globais (Design Tokens) --- */
+:root {
+    /* 50% Azul Escuro (Solidez e Engenharia) */
+    --blue-dark-900: #060B1A; /* Fundo base ultra-escuro */
+    --blue-dark-800: #0C1327; /* Fundo principal de seções escuras */
+    --blue-dark-700: #17213C; /* Fundo de cards e menus escuros */
+    --blue-dark-600: #253356; /* Bordas e tons intermediários */
+    
+    /* 30% Branco & Off-White (Leitura e Espaço) */
+    --white: #FFFFFF;
+    --off-white-100: #F8FAFC; /* Fundo principal claro */
+    --off-white-200: #E2E8F0; /* Bordas e detalhes em seções claras */
+    --text-dark: #0F172A;     /* Texto principal em seções claras */
+    --text-muted-dark: #475569; /* Texto secundário em seções claras */
+    
+    /* 20% Azul Claro (Tecnologia, Destaque e Ação) */
+    --blue-light-main: #0EA5E9;   /* Cor de ação primária (botões) */
+    --blue-light-hover: #38BDF8;  /* Cor de hover e destaque ativo */
+    --blue-light-glow: rgba(56, 189, 248, 0.25);
+    
+    /* Tipografia */
+    --font-title: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Animações e Transições */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 0.2s ease;
+    
+    /* Sombras e Bordas */
+    --border-light: rgba(56, 189, 248, 0.08);
+    --border-glow: rgba(56, 189, 248, 0.3);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+/* --- Reset e Configurações de Base --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--blue-dark-900);
+    color: var(--off-white-100);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-padding {
+    padding: 7.5rem 0;
+}
+
+/* Alternância de Fundos Cromáticos */
+.dark-bg {
+    background-color: var(--blue-dark-800);
+    color: var(--off-white-100);
+}
+
+.light-bg {
+    background-color: var(--off-white-100);
+    color: var(--text-dark);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Tipografia Focada --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.dark-bg h1, .dark-bg h2, .dark-bg h3, .dark-bg h4 {
+    color: var(--white);
+}
+
+.light-bg h1, .light-bg h2, .light-bg h3, .light-bg h4 {
+    color: var(--text-dark);
+}
+
+.section-header {
+    margin-bottom: 4.5rem;
+    max-width: 750px;
+}
+
+.section-header.text-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.subtitle {
+    display: inline-block;
+    font-family: var(--font-title);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--blue-light-hover);
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.subtitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 3px;
+    background-color: var(--blue-light-main);
+    border-radius: 2px;
+}
+
+.section-title {
+    font-size: 2.6rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+}
+
+.section-desc {
+    font-size: 1.15rem;
+}
+
+.dark-bg .section-desc {
+    color: var(--off-white-200);
+}
+
+.light-bg .section-desc {
+    color: var(--text-muted-dark);
+}
+
+/* Destaque Tipográfico Premium */
+.text-serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.dark-bg .text-serif-italic {
+    color: var(--blue-light-hover);
+}
+
+.light-bg .text-serif-italic {
+    color: #0b5e7d; /* Azul petróleo de alto contraste */
+}
+
+/* --- Botões de Conversão (Azul Claro 20%) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blue-light-main) 0%, #0284c7 100%);
+    color: var(--white);
+    box-shadow: var(--shadow-sm), var(--shadow-glow);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--blue-light-hover) 0%, var(--blue-light-main) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(14, 165, 233, 0.35);
+}
+
+.btn-secondary {
+    background-color: var(--blue-dark-700);
+    color: var(--white);
+    border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-outline:hover {
+    border-color: var(--blue-light-hover);
+    color: var(--blue-light-hover);
+    transform: translateY(-3px);
+    background-color: rgba(56, 189, 248, 0.05);
+}
+
+.btn-card {
+    background-color: rgba(14, 165, 233, 0.08);
+    color: var(--blue-light-hover);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    width: 100%;
+}
+
+.btn-card:hover {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+}
+
+.btn-large {
+    padding: 1.15rem 2.5rem;
+    font-size: 1.05rem;
+}
+
+/* --- Header & Navegação --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(6, 11, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.06);
+    transition: var(--transition-smooth);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.5rem;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.logo-link:hover .logo-img {
+    transform: translateY(-2px);
+}
+
+.logo-slogan {
+    display: none; /* O slogan e etiqueta de qualidade já vêm integrados na própria imagem do logo oficial */
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--blue-light-main);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--white);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-btn-desktop {
+    display: inline-flex;
+}
+
+.nav-btn-mobile {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: var(--white);
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    left: 0;
+    transition: var(--transition-fast);
+}
+
+.hamburger::before { top: -6px; }
+.hamburger::after { bottom: -6px; }
+
+/* --- Hero Section (50% Azul Escuro) --- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    background: linear-gradient(90deg, rgba(6, 11, 26, 0.98) 0%, rgba(6, 11, 26, 0.8) 40%, rgba(6, 11, 26, 0.2) 65%, rgba(6, 11, 26, 0) 80%),
+                url('imagens/logo/cam_desktop.webp') no-repeat right center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #060b1a;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 75%, rgba(6, 11, 26, 0.5) 100%);
+    pointer-events: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content {
+    max-width: 820px;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    color: var(--blue-light-hover);
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(2.4rem, 5.5vw, 4.3rem);
+    line-height: 1.15;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.hero-lead {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    max-width: 720px;
+}
+
+.hero-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 3.5rem;
+}
+
+.bullet {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.bullet i {
+    color: var(--blue-light-hover);
+    font-size: 1.1rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* --- Seção Soluções (30% Branco) --- */
+.solucoes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+.card-solucao {
+    background-color: var(--white);
+    border: 1px solid var(--off-white-200);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+}
+
+.card-solucao:hover {
+    transform: translateY(-8px);
+    border-color: rgba(14, 165, 233, 0.2);
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.08);
+}
+
+.card-solucao-img {
+    height: 360px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid var(--off-white-200);
+    background-color: var(--blue-dark-900);
+}
+
+@media (max-width: 768px) {
+    .card-solucao-img {
+        height: 250px;
+    }
+}
+
+.card-solucao-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.card-solucao:hover .card-solucao-img img {
+    transform: scale(1.06);
+}
+
+.card-solucao-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-icon {
+    font-size: 2.25rem;
+    color: var(--blue-light-main);
+    background-color: rgba(14, 165, 233, 0.06);
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.card-solucao:hover .card-icon {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.card-solucao h3 {
+    font-size: 1.45rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.card-solucao p {
+    color: var(--text-muted-dark);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.card-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 1px solid var(--off-white-200);
+    padding-top: 1.5rem;
+}
+
+.card-features li {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-features li i {
+    color: var(--blue-light-main);
+    font-size: 0.85rem;
+}
+
+/* --- Carrossel de Frota Operacional (50% Azul Escuro) --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 5rem;
+    padding: 0 1.5rem;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2.5rem;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Largura dinâmica baseada na viewport */
+.carousel-track .equipamento-card {
+    flex: 0 0 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+    .carousel-track .equipamento-card {
+        flex: 0 0 calc(33.333% - 1.666rem); /* 3 cards visíveis */
+    }
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+    .carousel-track .equipamento-card {
+        flex: 0 0 calc(50% - 1.25rem); /* 2 cards visíveis */
+    }
+}
+
+/* Controles Translúcidos Premium */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(6, 11, 26, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: var(--blue-light-hover);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.carousel-control:hover {
+    background: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    box-shadow: 0 0 20px var(--blue-light-glow);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control.prev { left: -1rem; }
+.carousel-control.next { right: -1rem; }
+
+.carousel-control:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: rgba(6, 11, 26, 0.4);
+    border-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dots Indicadores com Alongamento Premium */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+}
+
+.carousel-dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.carousel-dot:hover { background-color: var(--blue-light-hover); }
+
+.carousel-dot.active {
+    width: 2rem;
+    border-radius: 10px;
+    background-color: var(--blue-light-main);
+    box-shadow: 0 0 10px var(--blue-light-glow);
+}
+
+@media (max-width: 768px) {
+    .carousel-control { display: none; } /* Ocultar setas no celular */
+    .carousel-container { padding: 0; }
+}
+
+.equipamento-card {
+    background-color: var(--blue-dark-700);
+    border: 1px solid rgba(56, 189, 248, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.equipamento-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: var(--shadow-md), 0 0 25px rgba(56, 189, 248, 0.05);
+}
+
+.equipamento-img-container {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--blue-dark-900);
+}
+
+.equipamento-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.equipamento-card:hover .equipamento-img-container img {
+    transform: scale(1.08);
+}
+
+
+.equipamento-info {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.badge {
+    align-self: flex-start;
+    background-color: var(--blue-dark-900);
+    border: 1px solid var(--border-light);
+    color: var(--off-white-200);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+}
+
+.equipamento-card:hover .badge {
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--blue-light-hover);
+}
+
+.equipamento-info h3 {
+    font-size: 1.45rem;
+    margin-bottom: 0.85rem;
+}
+
+.equipamento-info p {
+    color: var(--off-white-200);
+    font-size: 0.95rem;
+    margin-bottom: 2.25rem;
+    flex-grow: 1;
+}
+
+/* Box Informativo de Locação */
+.locacao-cta {
+    background-color: var(--blue-dark-700);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.cta-text {
+    flex: 1 1 500px;
+}
+
+.cta-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.cta-text p {
+    color: var(--off-white-200);
+}
+
+/* --- Seção Obras Realizadas (30% Branco) --- */
+.obras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.obra-card {
+    background-color: var(--white);
+    border: 1px solid var(--off-white-200);
+    border-radius: 10px;
+    padding: 3rem 2.25rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+}
+
+.obra-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(14, 165, 233, 0.2);
+    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.06);
+}
+
+.obra-icon {
+    font-size: 2rem;
+    color: var(--blue-light-main);
+    background-color: rgba(14, 165, 233, 0.05);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+}
+
+.obra-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.obra-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted-dark);
+    margin-bottom: 0;
+}
+
+/* Bloco do Catálogo */
+.obras-catalogo-box {
+    background-color: var(--white);
+    border: 1px solid var(--off-white-200);
+    border-radius: 14px;
+    padding: 3.5rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.catalogo-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.catalogo-icon {
+    font-size: 3.5rem;
+    color: var(--blue-light-main);
+    flex-shrink: 0;
+}
+
+.catalogo-content {
+    flex: 1 1 500px;
+}
+
+.catalogo-content h3 {
+    font-size: 1.65rem;
+    margin-bottom: 0.75rem;
+    font-weight: 800;
+}
+
+.catalogo-content p {
+    color: var(--text-muted-dark);
+}
+
+.catalogo-action {
+    flex-shrink: 0;
+}
+
+/* --- Seção Autoridade Técnica (50% Azul Escuro) --- */
+#autoridade {
+    padding: 4.5rem 0;
+}
+
+.autoridade-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.autoridade-visual {
+    position: relative;
+}
+
+.autoridade-visual::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 65%);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.perfil-card {
+    background-color: var(--blue-dark-700);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: 14px;
+    padding: 2.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-smooth);
+}
+
+.perfil-card:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+.perfil-img-container {
+    height: 380px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    margin-bottom: 1.5rem;
+    background-color: var(--blue-dark-900);
+}
+
+.perfil-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: var(--transition-smooth);
+}
+
+.perfil-card:hover .perfil-img {
+    transform: scale(1.03);
+}
+
+.perfil-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    text-align: center; /* Opcional: Centraliza o nome e cargo para uma estética mais focada e simétrica */
+}
+
+.perfil-body h3 {
+    font-size: 1.45rem;
+    color: var(--white);
+    margin-bottom: 0.1rem;
+}
+
+.perfil-body .cargo {
+    font-size: 0.9rem;
+    color: var(--blue-light-hover);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.autoridade-content .lead {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.qualificacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+.qual-item {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.qual-icon {
+    font-size: 1.5rem;
+    color: var(--blue-light-hover);
+    background-color: rgba(56, 189, 248, 0.08);
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.qual-text h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+}
+
+.qual-text p {
+    font-size: 0.925rem;
+    color: var(--off-white-200);
+    margin-bottom: 0;
+}
+
+/* Citacao do Engenheiro */
+.autoridade-quote {
+    border-left: 3px solid var(--blue-light-main);
+    padding-left: 2rem;
+    margin-top: 3rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 0 10px 10px 0;
+}
+
+.autoridade-quote p {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.autoridade-quote cite {
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--blue-light-hover);
+    display: block;
+}
+
+/* --- Seção Conversão / CTA (Faixa Azul Compacta) --- */
+.contato {
+    background: linear-gradient(135deg, #091C34 0%, #0E73B4 100%); /* Gradiente azul nobre e vivo */
+    padding: 3.5rem 0; /* Faixa compacta */
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.contato::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    transform: rotate(-15deg);
+}
+
+.contato-wrapper {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: center;
+    box-shadow: none;
+}
+
+.contato-box {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.contato-box .section-title {
+    font-size: 2.25rem; /* Mais compacta */
+    margin-bottom: 1rem;
+    color: var(--white) !important;
+}
+
+.contato-box .text-serif-italic {
+    color: var(--blue-light-hover) !important;
+}
+
+.contato-box .section-desc {
+    font-size: 1.05rem;
+    color: rgba(248, 250, 252, 0.85) !important; /* text-light de alta leitura */
+    margin-bottom: 2rem; /* Mais compacta */
+    line-height: 1.7;
+}
+
+.contato-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Botão de WhatsApp de Alto Contraste */
+.contato-action-btn .btn {
+    background-color: var(--white);
+    color: #0c1327; /* Azul marinho contrastante */
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.contato-action-btn .btn:hover {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    box-shadow: 0 6px 22px rgba(14, 165, 233, 0.45);
+    transform: translateY(-3px);
+}
+
+.atendimento-tempo {
+    font-size: 0.85rem;
+    color: rgba(248, 250, 252, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.atendimento-tempo i {
+    color: var(--blue-light-hover);
+}
+
+/* --- Rodapé Institucional (50% Azul Escuro) --- */
+.footer {
+    background-color: var(--blue-dark-900);
+    border-top: 1px solid rgba(56, 189, 248, 0.05);
+    padding-top: 6rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.4fr 1.1fr;
+    gap: 3.5rem;
+    margin-bottom: 5rem;
+}
+
+.footer-brand .logo-link {
+    margin-bottom: 1.75rem;
+}
+
+.footer-brand p {
+    color: var(--off-white-200);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-contact-list li {
+    font-size: 0.95rem;
+    color: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.4;
+}
+
+.footer-legal-link {
+    color: var(--blue-light-hover);
+    font-weight: 500;
+    transition: var(--transition-fast);
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
+    text-decoration: underline;
+}
+
+.footer-legal-link:hover {
+    color: var(--white);
+}
+
+.footer h4 {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue-light-hover);
+    font-weight: 800;
+}
+
+.footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: var(--off-white-200);
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    padding-left: 6px;
+}
+
+/* Coluna Localização (Mapa) */
+.footer-map {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--blue-dark-700);
+    line-height: 0;
+}
+
+.map-container iframe {
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.map-container:hover iframe {
+    filter: grayscale(0.5) invert(0.92) contrast(1.1) brightness(0.96) !important;
+}
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 2.5rem 0;
+}
+
+.bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.copyright p {
+    font-size: 0.85rem;
+    color: var(--off-white-200);
+}
+
+.nota-tecnica {
+    font-size: 0.75rem;
+    color: var(--blue-light-hover);
+    font-weight: 600;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-socials a {
+    background-color: var(--blue-dark-700);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--off-white-200);
+    transition: var(--transition-fast);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-socials a:hover {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    transform: scale(1.1);
+}
+
+/* --- Botão de WhatsApp Flutuante (Azul Claro 20%) --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    background: linear-gradient(135deg, var(--blue-light-main) 0%, #0284c7 100%);
+    color: var(--white);
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+    z-index: 999;
+    transition: var(--transition-smooth);
+}
+
+.whatsapp-float:hover {
+    background: linear-gradient(135deg, var(--blue-light-hover) 0%, var(--blue-light-main) 100%);
+    transform: scale(1.1) rotate(12deg);
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.6);
+}
+
+.whatsapp-float .tooltip {
+    position: absolute;
+    right: 4.75rem;
+    background-color: var(--blue-dark-700);
+    border: 1px solid var(--border-light);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-md);
+}
+
+.whatsapp-float:hover .tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- Efeitos de Revelação Scroll (IntersectionObserver) --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsividade & Ajustes Mobile --- */
+
+@media (max-width: 1024px) {
+    .autoridade-wrapper {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .solucoes-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .section-padding {
+        padding: 5.5rem 0;
+    }
+    
+    .section-title {
+        font-size: 2.1rem;
+    }
+    
+    .nav-btn-desktop {
+        display: none;
+    }
+    
+    .nav-btn-mobile {
+        display: inline-flex !important;
+        margin-top: 1.5rem;
+        background-color: var(--blue-light-main) !important;
+        color: var(--white) !important;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Menu Mobile Hambúrguer */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav {
+        position: fixed;
+        top: 5.5rem;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: var(--blue-dark-800);
+        border-bottom: 0 solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        transition: var(--transition-smooth);
+        z-index: 998;
+    }
+    
+    .nav.active {
+        height: auto;
+        padding: 2.5rem 1.5rem;
+        border-bottom-width: 1px;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        display: block;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    /* Alternar ícone menu */
+    .menu-toggle.active .hamburger {
+        background-color: transparent;
+    }
+    
+    .menu-toggle.active .hamburger::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+    
+    .menu-toggle.active .hamburger::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+    
+    /* Hero */
+    .hero {
+        padding-top: 8rem;
+        padding-bottom: 6rem;
+        text-align: center;
+    }
+    
+    .hero-tag {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-bullets {
+        align-items: center;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    /* Obras Catalogo Box */
+    .obras-catalogo-box {
+        padding: 2.5rem 2rem;
+    }
+    
+    .catalogo-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .catalogo-action, .catalogo-action .btn {
+        width: 100%;
+    }
+    
+    /* Contato Box */
+    .contato-wrapper {
+        padding: 0;
+    }
+    
+    .contato-action-btn, .contato-action-btn .btn {
+        width: 100%;
+    }
+    
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    
+    .bottom-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    
+    .whatsapp-float {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 3.25rem;
+        height: 3.25rem;
+        font-size: 1.75rem;
+    }
+    
+    .whatsapp-float .tooltip {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   --- 10. ESTILIZAÇÃO DO BLOCO DO CATÁLOGO PREMIUM 3D & SUBPÁGINA ---
+   ========================================================================== */
+
+.catalogo-container-3d {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* ===== Grid de Produtos Clicável (substitui o livro 3D) ===== */
+
+/* ── Tema Azul: card com fundo azul claro e detalhes azul escuro ── */
+.obras-catalogo-box--blue {
+    background: linear-gradient(135deg, #daeeff 0%, #e8f5ff 60%, #cce5f5 100%);
+    border: 1.5px solid rgba(14, 115, 180, 0.18);
+    box-shadow: 0 8px 40px rgba(14, 115, 180, 0.10), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.obras-catalogo-box--blue .catalogo-heading {
+    color: #0c2340;
+}
+
+.obras-catalogo-box--blue .catalogo-lead {
+    color: #1d4a72;
+}
+
+.obras-catalogo-box--blue .bullet-icon {
+    background-color: rgba(14, 115, 180, 0.10);
+    border-color: rgba(14, 115, 180, 0.20);
+    color: #0e73b4;
+}
+
+.obras-catalogo-box--blue .bullet-text h4 {
+    color: #0c2340;
+}
+
+.obras-catalogo-box--blue .bullet-text p {
+    color: #2a5f8a;
+}
+
+/* Label simples branco sobre a imagem */
+.cat-grid-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.4rem 0.75rem 0.55rem;
+    background: linear-gradient(to top, rgba(6, 11, 26, 0.80) 0%, transparent 100%);
+    font-family: var(--font-title);
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.96);
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 5;
+    text-align: center;
+}
+
+/* Esconde os labels quando o overlay de CTA aparece */
+.catalogo-products-grid-link:hover .cat-grid-label {
+    opacity: 0;
+}
+
+
+.catalogo-products-grid-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.10);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.catalogo-products-grid-link:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(14, 165, 233, 0.18), 0 4px 16px rgba(0,0,0,0.10);
+}
+
+/* Grid interno 3×3 */
+.catalogo-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Cada célula do grid */
+.cat-grid-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: var(--blue-dark-700);
+}
+
+.cat-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.5s ease;
+    filter: brightness(0.88) saturate(0.9);
+}
+
+/* Zoom suave + saturação ao hover do bloco inteiro */
+.catalogo-products-grid-link:hover .cat-grid-item img {
+    transform: scale(1.06);
+    filter: brightness(0.75) saturate(0.7);
+}
+
+
+
+
+/* Overlay de CTA central — aparece ao hover */
+.cat-grid-cta-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    background: rgba(6, 11, 26, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.catalogo-products-grid-link:hover .cat-grid-cta-overlay {
+    opacity: 1;
+}
+
+.cat-grid-cta-overlay i {
+    font-size: 1.35rem;
+    color: var(--white);
+}
+
+.cat-grid-cta-overlay span {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Borda neon azul sutil que surge no hover */
+.catalogo-products-grid-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: border-color 0.4s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.catalogo-products-grid-link:hover::after {
+    border-color: rgba(14, 165, 233, 0.45);
+}
+
+/* Responsividade do Grid */
+@media (max-width: 768px) {
+    .catalogo-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+    }
+    .cat-grid-cta-overlay span {
+        font-size: 0.85rem;
+    }
+}
+
+
+
+/* Coluna 1: O Mockup 3D */
+.catalogo-mockup-wrapper {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1500px;
+}
+
+/* Estrutura Tridimensional do Livro */
+.catalogo-book-3d {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-18deg) rotateX(10deg);
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 5;
+}
+
+/* Giro e Efeito 3D ao passar o mouse */
+.catalogo-mockup-wrapper:hover .catalogo-book-3d {
+    transform: rotateY(-5deg) rotateX(5deg) translateZ(10px);
+}
+
+/* Âncora de Link do Livro (Envolve todo o Mockup) */
+.catalogo-book-anchor {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.catalogo-book-anchor .catalogo-mockup-wrapper {
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Efeito de Elevação e Escala no Hover (Feedback Físico de Botão) */
+.catalogo-book-anchor:hover .catalogo-mockup-wrapper {
+    transform: translateY(-8px) scale(1.03);
+}
+
+/* Efeito da Sombra se afastar e suavizar no hover */
+.catalogo-book-anchor:hover .book-shadow {
+    transform: rotateX(85deg) rotateY(-5deg) translateY(18px) scale(1.08);
+    opacity: 0.55;
+    filter: blur(10px);
+}
+
+/* Face da Capa Frontal Premium */
+.book-cover.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #0e172a 0%, #060b1a 100%);
+    border-radius: 4px 12px 12px 4px;
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.12),
+                inset -2px -2px 10px rgba(0, 0, 0, 0.6);
+    transform-style: preserve-3d;
+    transform: translateZ(12px);
+    z-index: 10;
+    padding: 2.5rem 1.85rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* No hover do botão do livro, a borda e capa brilham sutilmente */
+.catalogo-book-anchor:hover .book-cover.front {
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.18),
+                inset -2px -2px 12px rgba(0, 0, 0, 0.55),
+                0 0 25px rgba(14, 165, 233, 0.15);
+}
+
+/* Textura e Brilho Metálico na Capa */
+.book-cover-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Lombada / Vinco da Capa */
+.book-spine-highlight {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    width: 3px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.4);
+    z-index: 3;
+}
+
+/* Detalhes Internos da Capa */
+.book-logo-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    z-index: 5;
+}
+
+.book-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.book-title-main {
+    font-family: var(--font-title);
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.book-title-sub {
+    font-size: 0.85rem;
+    color: var(--off-white-200);
+    line-height: 1.4;
+    margin-bottom: auto;
+    z-index: 5;
+}
+
+.book-year {
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--blue-light-hover);
+    letter-spacing: 0.1em;
+    z-index: 5;
+}
+
+/* Indicativo Flutuante de Ação (Aparência de Botão/Livro Premium) */
+.book-action-badge {
+    position: absolute;
+    bottom: 20px;
+    background: rgba(6, 11, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    color: var(--white);
+    padding: 0.55rem 1.35rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    z-index: 15;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                opacity 0.4s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    pointer-events: none;
+}
+
+.book-action-badge i {
+    color: var(--blue-light-hover);
+    font-size: 0.8rem;
+    animation: badgeIconPulse 1.5s infinite ease-in-out;
+}
+
+/* No hover da âncora, o badge de botão surge e ganha vida */
+.catalogo-book-anchor:hover .book-action-badge {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 15px 30px rgba(14, 165, 233, 0.22),
+                0 0 15px rgba(14, 165, 233, 0.12);
+    border-color: rgba(14, 165, 233, 0.55);
+}
+
+@keyframes badgeIconPulse {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.85;
+    }
+    50% {
+        transform: translateY(-2px) scale(1.25);
+        opacity: 1;
+    }
+}
+
+
+/* Lombada Lateral do Livro (Volume) */
+.book-spine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-dark-900) 0%, var(--blue-dark-800) 100%);
+    transform: rotateY(-90deg) translateZ(12px);
+    border-radius: 4px 0 0 4px;
+    box-shadow: inset -1px 0px 3px rgba(255, 255, 255, 0.1);
+    z-index: 8;
+}
+
+/* Páginas Internas Simulando Volume Tridimensional */
+.book-pages {
+    position: absolute;
+    width: 240px;
+    height: 342px;
+    background: #E2E8F0;
+    border-radius: 0 6px 6px 0;
+    box-shadow: inset 3px 0 10px rgba(0, 0, 0, 0.15), 
+                -1px 1px 1px rgba(0, 0, 0, 0.1);
+    transform: translateZ(1px) translateX(8px) translateY(4px);
+    border-right: 5px solid #F1F5F9;
+    border-bottom: 2px solid #CBD5E1;
+    z-index: 6;
+}
+
+/* Sombra Projetada Realista */
+.book-shadow {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    width: 85%;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
+    filter: blur(8px);
+    z-index: 1;
+    transform: rotateX(85deg) rotateY(-5deg);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.catalogo-mockup-wrapper:hover .book-shadow {
+    transform: rotateX(85deg) rotateY(-5deg) scale(1.05);
+    opacity: 0.8;
+}
+
+/* Coluna 2: Detalhes Comerciais */
+.catalogo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--blue-light-hover);
+    background-color: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+}
+
+.catalogo-heading {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.catalogo-lead {
+    font-size: 1.05rem;
+    color: var(--text-muted-dark);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* Bullet Points Nobres */
+.catalogo-bullets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+.catalogo-bullets-list li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.bullet-icon {
+    font-size: 1.35rem;
+    color: var(--blue-light-main);
+    background-color: rgba(14, 165, 233, 0.06);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.bullet-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.bullet-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted-dark);
+    line-height: 1.5;
+}
+
+/* Área de Ações e Notas */
+.catalogo-actions-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.catalogo-btn {
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.25);
+}
+
+.catalogo-action-note {
+    font-size: 0.8rem;
+    color: var(--text-muted-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.catalogo-action-note i {
+    color: var(--blue-light-main);
+}
+
+/* --- Estilos para a Subpágina do Catálogo (catalogo.html) --- */
+.catalogo-body-bg {
+    background-color: var(--blue-dark-900) !important;
+    color: var(--off-white-100) !important;
+}
+
+.catalogo-intro-section {
+    padding: 6.5rem 0 3.5rem 0;
+    text-align: center;
+}
+
+.catalogo-intro-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white) !important;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.catalogo-intro-lead {
+    font-size: 1.25rem;
+    color: var(--text-muted-dark);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Tabs / Visualização Interativa */
+.catalogo-interactive-tabs {
+    margin-bottom: 5rem;
+}
+
+.tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+    border-bottom: 1px solid var(--off-white-200);
+    padding-bottom: 1rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-muted-dark);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+    outline: none;
+}
+
+.tab-btn:hover {
+    color: var(--blue-light-main);
+}
+
+.tab-btn.active {
+    color: var(--blue-light-main);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--blue-light-main);
+    border-radius: 3px 3px 0 0;
+}
+
+/* Conteúdos das Abas */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.tab-info-side h3 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: var(--text-dark);
+}
+
+.tab-info-side p {
+    font-size: 1.05rem;
+    color: var(--text-muted-dark);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.tab-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.tab-feature-list li {
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dark);
+}
+
+.tab-feature-list li i {
+    color: var(--blue-light-main);
+    font-size: 1.1rem;
+}
+
+.tab-visual-side {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background-color: var(--blue-dark-900);
+    height: 350px;
+    border: 1px solid var(--off-white-200);
+}
+
+.tab-visual-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Showcase de Produtos do Catálogo --- */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 6rem;
+    width: 100%;
+}
+
+.product-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    transition: var(--transition-smooth);
+    width: 100%;
+    gap: 0; /* Removido gap para encaixe monolítico perfeito */
+}
+
+.product-row:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Hover Coordenado de Luxo com Física Suave */
+.product-row:hover .product-carousel-side {
+    transform: none; /* Sem aproximação */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15), 0 0 25px rgba(14, 165, 233, 0.03);
+    border-color: #ffffff !important;
+}
+
+.product-row:hover .product-info-side {
+    transform: none; /* Sem aproximação */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 0 25px rgba(14, 165, 233, 0.02);
+    border-color: #ffffff !important;
+}
+
+/* Inversão alternada para o ziguezague em telas desktop */
+@media (min-width: 769px) {
+    /* Linha padrão: imagem na esquerda, texto na direita */
+    .product-row .product-carousel-side {
+        border-radius: 24px 0 0 24px;
+        border-right: none; /* Encaixe cirúrgico */
+    }
+    .product-row .product-info-side {
+        border-radius: 0 24px 24px 0;
+        border-left: 1px solid rgba(15, 23, 42, 0.06); /* Divisória suave cinza contra o fundo branco */
+    }
+
+    /* Linha par: ziguezague reverso - imagem na direita, texto na esquerda */
+    .product-row:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    .product-row:nth-child(even) .product-carousel-side {
+        border-radius: 0 24px 24px 0;
+        border-left: none;
+        border-right: none;
+    }
+    .product-row:nth-child(even) .product-info-side {
+        border-radius: 24px 0 0 24px;
+        border-right: 1px solid rgba(15, 23, 42, 0.06); /* Divisória suave cinza contra o fundo branco */
+        border-left: none;
+    }
+}
+
+/* Metade de Imagem/Carrossel com Moldura Físico-Clara e Sofisticada */
+.product-carousel-side {
+    position: relative;
+    width: 460px;
+    height: 460px;
+    flex: 0 0 460px;
+    overflow: hidden;
+    background: #ffffff; /* Fundo branco unificado com a moldura */
+    border: 1px solid #ffffff; /* Borda branca sólida */
+    padding: 0; /* Sem padding — imagem toca as bordas do card */
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    z-index: 10;
+}
+
+.carousel-track-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0; /* Sem radius interno — imagem ocupa toda a moldura */
+    box-shadow: none; /* Sem sombra interna */
+    position: relative;
+}
+
+.product-carousel-side .carousel-track {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    gap: 0 !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff; /* Fundo branco */
+    padding: 0;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche toda a moldura sem espaços brancos */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-row:hover .carousel-slide img {
+    transform: scale(1); /* Sem zoom */
+}
+
+.product-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    color: var(--blue-dark-800);
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    z-index: 15;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product-badge i {
+    font-size: 0.75rem;
+    color: var(--blue-light-main);
+}
+
+/* Setas do Carrossel (Aparência Minimalista e de Luxo em Vidro Claro) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9); /* Vidro claro translúcido */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    color: var(--blue-light-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 12;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 0.85rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.carousel-btn:hover {
+    background: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    box-shadow: 0 0 20px var(--blue-light-glow);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 20px;
+}
+
+.carousel-btn.next {
+    right: 20px;
+}
+
+.product-carousel-side:hover .carousel-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Dots do Carrossel (Aparência Premium em Vidro Claro) */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 12;
+    background: rgba(255, 255, 255, 0.9); /* Vidro claro translúcido */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.carousel-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.2);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.carousel-dots .dot.active {
+    background: var(--blue-light-main);
+    width: 16px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--blue-light-glow);
+}
+
+/* Metade de Conteúdo Técnico em Card Retangular Branco Limpo */
+.product-info-side {
+    padding: 2.25rem 2.5rem;
+    flex: 1;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffffff; /* Fundo branco puro unificado */
+    border: 1px solid #ffffff; /* Borda branca */
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Nota: Removido pseudo-elementos ::before (H: 460mm) e ::after (W: AUTO) e seus hovers correspondentes */
+
+.product-tech-serial {
+    display: none !important; /* Esconde seriais se houver */
+}
+
+.product-name {
+    font-size: 1.6rem; 
+    font-weight: 800;
+    color: var(--text-dark); /* Título em azul escuro/preto para contraste */
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.product-intro-desc {
+    font-size: 0.88rem; 
+    color: var(--text-muted-dark); /* Descrição em cinza escuro para excelente contraste */
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+.product-spec-title {
+    font-family: var(--font-title);
+    font-size: 0.68rem; 
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(15, 23, 42, 0.5); /* Cinza escuro sutil */
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.9;
+}
+
+.product-spec-title i {
+    color: var(--blue-light-main);
+}
+
+/* Bento Grid de Especificações Premium com Destaque em Fundo Branco */
+.product-spec-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.product-spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* Fundo azul-gelo translúcido super chique e destacado contra o branco */
+    background: linear-gradient(135deg, #ffffff 0%, rgba(14, 165, 233, 0.04) 100%);
+    border: 1px solid rgba(14, 165, 233, 0.12);
+    border-radius: 14px;
+    padding: 0.95rem 1.1rem;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(15, 23, 42, 0.03);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-spec-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--blue-light-main);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-spec-item:hover {
+    background: linear-gradient(135deg, #ffffff 0%, rgba(14, 165, 233, 0.08) 100%);
+    border-color: rgba(14, 165, 233, 0.25);
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 8px 18px rgba(14, 165, 233, 0.06);
+}
+
+.product-spec-item:hover::before {
+    opacity: 1;
+}
+
+.product-spec-label {
+    font-family: var(--font-title);
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted-dark); /* Cinza escuro sutil */
+    margin-bottom: 0.45rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.product-spec-label i {
+    color: var(--blue-light-main);
+    font-size: 0.75rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-spec-item:hover .product-spec-label i {
+    transform: scale(1.1) rotate(15deg);
+    color: var(--blue-light-hover);
+}
+
+.product-spec-val {
+    color: var(--text-dark); /* Texto escuro destacado */
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-align: left;
+    line-height: 1.35;
+}
+
+/* Botão WhatsApp Metalizado e Magnético de Luxo */
+.btn-whatsapp-seller {
+    background: linear-gradient(135deg, #047857 0%, #10B981 50%, #059669 100%);
+    background-size: 200% auto;
+    color: var(--white);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: fit-content;
+    padding: 0.9rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    animation: pulso-whatsapp 2.5s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-whatsapp-seller::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-30deg);
+    animation: metal-shimmer 4s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes metal-shimmer {
+    0% {
+        left: -60%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    35% {
+        left: 150%;
+        opacity: 0;
+    }
+    100% {
+        left: 150%;
+        opacity: 0;
+    }
+}
+
+.btn-whatsapp-seller:hover {
+    background-position: right center;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(16, 185, 129, 0.35), 0 0 20px rgba(16, 185, 129, 0.25);
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-whatsapp-seller i {
+    font-size: 1.05rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-whatsapp-seller:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+@keyframes pulso-whatsapp {
+    0% {
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25), 0 0 0 0 rgba(16, 185, 129, 0.45);
+    }
+    70% {
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25), 0 0 0 12px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25), 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* Responsividade do Catálogo */
+@media (max-width: 992px) {
+    .product-row {
+        gap: 0;
+    }
+    .product-carousel-side {
+        width: 380px;
+        height: 380px;
+        flex: 0 0 380px;
+        padding: 10px;
+    }
+    .product-info-side {
+        padding: 1.75rem;
+        min-height: 380px;
+    }
+    .product-name {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-list {
+        gap: 3.5rem;
+    }
+
+    .product-row {
+        flex-direction: column !important;
+        min-height: auto;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .product-carousel-side {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        flex: 0 0 auto;
+        padding: 8px;
+        border-radius: 24px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-info-side {
+        width: 100%;
+        min-height: auto;
+        flex: 0 0 auto;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        border-radius: 24px !important;
+        border: 1px solid #ffffff !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Nota: Removido pseudo-elementos no mobile */
+
+    .product-name {
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-intro-desc {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .product-spec-list {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-whatsapp-seller {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Seção FAQ (Perguntas Frequentes) - Cards em Fundo Azul Escuro
+   ========================================================================== */
+.faq {
+    background-color: var(--white);
+    color: var(--text-dark);
+    position: relative;
+    border-top: 1px solid var(--off-white-200);
+}
+
+.faq-grid {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.faq-item {
+    background-color: var(--blue-dark-800); /* Fundo azul escuro premium */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(6, 11, 26, 0.08);
+}
+
+.faq-item:hover {
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow: 0 10px 25px rgba(6, 11, 26, 0.15);
+    transform: translateY(-2px);
+}
+
+.faq-item.active {
+    border-color: var(--blue-light-main);
+    background-color: var(--blue-dark-700); /* Ligeiramente mais claro ao abrir para profundidade */
+    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.12);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: none;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--white); /* Texto branco para contraste no fundo escuro */
+    transition: var(--transition-smooth);
+}
+
+.faq-item.active .faq-question {
+    color: var(--blue-light-hover); /* Destaque azul neon ativo */
+}
+
+.faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05); /* Ícone contrastante no escuro */
+    color: var(--blue-light-hover);
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.faq-item:hover .faq-icon {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+}
+
+.faq-item.active .faq-icon {
+    background-color: var(--blue-light-main);
+    color: var(--white);
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.faq-answer-content {
+    padding: 0 2rem 1.75rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    color: rgba(248, 250, 252, 0.85); /* Texto de resposta claro */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Separador sutil */
+    padding-top: 1rem;
+}
+
+/* Responsividade FAQ */
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 1.25rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    .faq-answer-content {
+        padding: 0 1.5rem 1.25rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .faq-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   Seção Quem Somos
+   ========================================================================== */
+.quem-somos {
+    background-color: var(--off-white-100);
+    position: relative;
+    border-top: 1px solid var(--off-white-200);
+}
+
+.quem-somos-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.quem-somos-visual {
+    position: relative;
+}
+
+.quem-somos-img-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--off-white-200);
+}
+
+.quem-somos-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.quem-somos-img-box:hover .quem-somos-img {
+    transform: scale(1.02);
+}
+
+/* Glassmorphism Badge para o Símbolo oficial */
+.quem-somos-experience {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    animation: floating-experience 4s ease-in-out infinite;
+}
+
+.quem-somos-badge-img {
+    width: 124px;
+    height: 124px;
+    object-fit: contain;
+    display: block;
+    filter: none;
+}
+
+@keyframes floating-experience {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.exp-number {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--blue-light-main);
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+}
+
+.exp-text {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--off-white-100);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.quem-somos-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.quem-somos-content .lead-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.quem-somos-content .desc-text {
+    font-size: 0.975rem;
+    line-height: 1.8;
+}
+
+.quem-somos-actions {
+    margin-top: 1rem;
+}
+
+/* Responsividade Quem Somos */
+@media (max-width: 992px) {
+    .quem-somos-wrapper {
+        gap: 3rem;
+    }
+    .quem-somos-img {
+        height: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .quem-somos-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    .quem-somos-img {
+        height: 320px;
+    }
+    .quem-somos-experience {
+        bottom: -5px;
+        right: 5px;
+        padding: 0;
+    }
+    .quem-somos-badge-img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* ==========================================================================
+   Estilos da Subpágina de História (historia.html)
+   ========================================================================== */
+.historia-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.historia-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.historia-content .lead-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.historia-content .body-text {
+    font-size: 0.975rem;
+    line-height: 1.8;
+}
+
+/* Painel de Estatísticas da História */
+.historia-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--off-white-200);
+    padding-top: 2rem;
+}
+
+.stat-card {
+    text-align: center;
+    background-color: var(--blue-dark-800);
+    border: 1px solid var(--blue-dark-600);
+    padding: 1.75rem 1.25rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(6, 11, 26, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue-light-main);
+    box-shadow: 0 15px 30px rgba(14, 165, 233, 0.2);
+}
+
+.stat-card h3 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--blue-light-main);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+}
+
+.stat-card p {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.4;
+}
+
+/* Visual da Imagem da História à Direita */
+.historia-visual {
+    position: relative;
+}
+
+.historia-img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--off-white-200);
+    overflow: visible;
+}
+
+.historia-img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.historia-img-wrapper:hover .historia-img {
+    transform: scale(1.015);
+}
+
+.historia-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: rgba(6, 11, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    animation: floating-badge 4s ease-in-out infinite;
+}
+
+@keyframes floating-badge {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.historia-badge i {
+    color: var(--blue-light-main);
+    font-size: 1.25rem;
+}
+
+.historia-badge span {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Bloco da Estrutura Operacional */
+.historia-estrutura {
+    border-top: 1px solid var(--off-white-200);
+}
+
+.historia-estrutura .text-serif-italic {
+    color: #0b5e7d !important;
+}
+
+.estrutura-text-block {
+    max-width: 860px;
+    margin: 0 auto 4rem auto;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Faixa/Galeria de Imagens da Estrutura */
+.estrutura-galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.galeria-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 280px;
+    border: 1px solid var(--off-white-200);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+    transition: var(--transition-smooth);
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.galeria-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(14, 165, 233, 0.15);
+    border-color: rgba(14, 165, 233, 0.3);
+}
+
+.galeria-item:hover img {
+    transform: scale(1.04);
+}
+
+.galeria-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.75rem 1.25rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(6, 11, 26, 0.95) 0%, rgba(6, 11, 26, 0.4) 60%, rgba(6, 11, 26, 0) 100%);
+    color: var(--white);
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+/* Responsividade da História */
+@media (max-width: 992px) {
+    .historia-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    .historia-visual {
+        order: -1; /* Posiciona o carrossel de fotos no topo no mobile/tablet */
+    }
+    .historia-img {
+        height: 380px;
+    }
+    .estrutura-galeria {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .estrutura-galeria {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .historia-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        text-align: center;
+    }
+    .stat-card {
+        text-align: center;
+    }
+    .historia-badge {
+        bottom: -15px;
+        left: 15px;
+    }
+}
+
+/* ==========================================================================
+   Slider de Imagens da Seção de História (Nossa Trajetória)
+   ========================================================================== */
+.historia-slider {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.historia-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+}
+
+.historia-slider .slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.historia-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Controles do Slider */
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    transform: translateY(-50%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.slider-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(6, 11, 26, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(5px);
+    pointer-events: auto;
+}
+
+.slider-btn:hover {
+    background: var(--blue-light-main);
+    color: var(--blue-dark-900);
+    border-color: var(--blue-light-main);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 5;
+    background: rgba(6, 11, 26, 0.6);
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.slider-dots .dot.active {
+    background: var(--blue-light-main);
+    width: 22px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+@media (max-width: 992px) {
+    .historia-slider {
+        height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .historia-slider {
+        height: 300px;
+    }
+    .slider-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* ==========================================================================
+   Layout Dividido para Estrutura (Imagens na Esquerda, Texto na Direita)
+   ========================================================================== */
+.historia-estrutura {
+    padding-top: 2rem !important; /* Aproxima consideravelmente do bloco acima */
+}
+
+.historia-estrutura .container {
+    max-width: 1280px; /* Enquadra melhor e mais amplo na tela */
+}
+
+.estrutura-split-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr; /* Aumenta a proporção das imagens */
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.estrutura-galeria-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.estrutura-galeria-2x2 .galeria-item {
+    height: 290px; /* Aumenta a proporção vertical das imagens */
+    border-radius: 16px;
+}
+
+.estrutura-right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.estrutura-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-size: 0.975rem;
+    line-height: 1.8;
+    color: var(--text-muted-dark);
+}
+
+.estrutura-paragraphs p {
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+    .estrutura-split-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    .estrutura-galeria-2x2 .galeria-item {
+        height: 280px;
+    }
+    .estrutura-right-content {
+        text-align: center;
+    }
+    .estrutura-right-content .subtitle {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .estrutura-galeria-2x2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .estrutura-galeria-2x2 .galeria-item {
+        height: 220px;
+    }
+}
+
+/* ==========================================================================
+   Estilização do Carrossel de Soluções (Página Inicial)
+   ========================================================================== */
+.solucoes-carousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.solucoes-carousel .carousel-track {
+    gap: 2.5rem;
+}
+
+.solucoes-carousel .carousel-track .card-solucao {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 992px) {
+    .solucoes-carousel .carousel-track .card-solucao {
+        flex: 0 0 calc(50% - 1.25rem); /* Exibe exatamente 2 cards por vez no desktop */
+    }
+}
+
+/* ==========================================================================
+   OTIMIZAÇÕES EXCLUSIVAS PARA CELULARES (MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Ajustes Gerais de Espaçamento e Spacing */
+    .section-padding {
+        padding: 3.5rem 0 !important;
+    }
+    
+    .section-title {
+        font-size: 1.85rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.25 !important;
+    }
+    
+    .subtitle {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Ajustes da Seção Hero - Mobile */
+    .hero {
+        padding-top: 8rem !important;
+        padding-bottom: 5.5rem !important;
+        min-height: 100vh !important; /* Altura total de tela para mobile premium */
+        display: flex !important;
+        align-items: center !important;
+        background: linear-gradient(to top, rgba(6, 11, 26, 0.95) 0%, rgba(6, 11, 26, 0.55) 45%, rgba(6, 11, 26, 0.15) 75%, rgba(6, 11, 26, 0) 100%),
+                    url('imagens/logo/cam_mobile.webp') no-repeat center center !important; /* Leve degradê azul do filtro de baixo para cima */
+        background-size: contain !important; /* Enquadra a imagem por completo sem zoom lateral */
+        background-color: #060b1a !important; /* Cor de fundo integrada oficial COESO */
+        background-attachment: fixed !important; /* Efeito paralaxe (fundo fixo) no mobile */
+    }
+    .hero-overlay {
+        display: none !important; /* Oculta overlay global para manter imagem totalmente nítida */
+    }
+    .hero-content {
+        background: transparent !important; /* Remove por completo o bloco cinza de fundo solicitado */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .hero-title {
+        font-size: 3.4rem !important; /* Aumentado de forma monumental para garantir percepção clara no celular */
+        line-height: 1.25 !important;
+        margin-bottom: 1.5rem !important; /* Maior espaçamento sob o título */
+        color: var(--white) !important;
+        text-shadow: 0 2px 12px rgba(6, 11, 26, 0.98), 0 1px 4px rgba(6, 11, 26, 0.98), 0 0 25px rgba(6, 11, 26, 0.5) !important; /* Múltiplas camadas de sombra extra-fortes para legibilidade das letras */
+    }
+    .hero-lead {
+        font-size: 1.025rem !important; /* Mantido aumentado em 10% */
+        margin-bottom: 2.75rem !important; /* Maior espaçamento sob o texto para afastar dos botões */
+        line-height: 1.6 !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+        text-shadow: 0 2px 8px rgba(6, 11, 26, 0.95), 0 1px 2px rgba(6, 11, 26, 0.95), 0 0 15px rgba(6, 11, 26, 0.4) !important; /* Sombra robusta e legível */
+    }
+    .hero-actions {
+        display: flex !important;
+        flex-direction: row !important; /* Força botões na mesma linha */
+        flex-wrap: nowrap !important; /* IMPEDE A QUEBRA DE LINHA SOB QUALQUER HIPÓTESE */
+        gap: 0.5rem !important; /* Espaçamento mais compacto e elegante */
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    .hero-actions .btn {
+        flex: 1 1 50% !important; /* Divide a largura igualmente (50% cada) para ficarem simétricos e lado a lado */
+        width: auto !important;
+        padding: 0.65rem 0.25rem !important; /* Padding extremamente compacto no mobile para caberem lado a lado */
+        font-size: 0.72rem !important; /* Fonte menor e discreta para caberem perfeitamente */
+        white-space: nowrap !important; /* Garante que o texto não quebre internamente */
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    }
+    .hero-actions .btn i {
+        display: none !important; /* Remove os ícones no celular para ganhar espaço lateral e garantir que caibam na mesma linha */
+    }
+
+    /* Ajustes da Seção Soluções (Pilares) no Carrossel - Mobile */
+    .solucoes-carousel {
+        padding: 0 0.5rem !important;
+    }
+    .solucoes-carousel .card-solucao-img {
+        height: 190px !important; /* Altura compacta para celular */
+    }
+    .solucoes-carousel .card-solucao-content {
+        padding: 1.15rem !important; /* Padding mais enxuto para otimizar espaço vertical */
+    }
+    .solucoes-carousel .card-solucao h3 {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .solucoes-carousel .card-solucao p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+    .solucoes-carousel .card-features {
+        padding-top: 0.85rem !important;
+        gap: 0.4rem !important;
+    }
+    .solucoes-carousel .card-features li {
+        font-size: 0.775rem !important;
+    }
+    
+    /* Ativar, compactar e posicionar as setas de navegação no celular sobre a imagem */
+    .solucoes-carousel .carousel-control {
+        display: flex !important; /* Sobrescreve o display: none global */
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+        font-size: 0.85rem !important;
+        background: rgba(6, 11, 26, 0.85) !important;
+        border-color: rgba(56, 189, 248, 0.25) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        top: 95px !important; /* Posicionado no centro vertical da imagem de 190px de altura */
+        transform: translateY(-50%) !important;
+    }
+    .solucoes-carousel .carousel-control.prev {
+        left: 0.25rem !important;
+    }
+    .solucoes-carousel .carousel-control.next {
+        right: 0.25rem !important;
+    }
+    
+    /* Ajuste de layout dos dots da paginação no celular (sem sobrepor conteúdo) */
+    .solucoes-carousel .carousel-dots {
+        position: static !important; /* Remove posicionamento absoluto global */
+        transform: none !important;
+        margin-top: 1.5rem !important;
+        background: transparent !important; /* Remove o vidro claro */
+        border: none !important;
+        box-shadow: none !important;
+        gap: 0.5rem !important;
+        padding: 0 !important;
+        justify-content: center !important;
+    }
+    .solucoes-carousel .carousel-dot {
+        background-color: rgba(6, 11, 26, 0.15) !important;
+        width: 0.5rem !important;
+        height: 0.5rem !important;
+    }
+    .solucoes-carousel .carousel-dot.active {
+        background-color: var(--blue-light-main) !important;
+        width: 1.5rem !important;
+        border-radius: 8px !important;
+    }
+
+    /* Ajustes dos Cards de Equipamento (Frota Operacional) no Carrossel - Mobile */
+    .carousel-track .equipamento-card .equipamento-img-container {
+        height: 190px !important; /* Alinha com o padrão de 190px de imagem */
+    }
+    .carousel-track .equipamento-card .equipamento-info {
+        padding: 1.15rem !important; /* Padding compacto padrão */
+    }
+    .carousel-track .equipamento-card .badge {
+        margin-bottom: 0.85rem !important;
+    }
+    .carousel-track .equipamento-card h3 {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .carousel-track .equipamento-card p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Ajustes dos Cards de Obras Realizadas no Grid - Mobile */
+    .obra-card {
+        padding: 1.5rem 1.15rem !important; /* Padding compacto padrão para cards sem imagem */
+    }
+    .obra-card .obra-icon {
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .obra-card h4 {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+    .obra-card p {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Ajustes do Bloco do Catálogo na Index */
+    .obras-catalogo-box {
+        padding: 1.75rem 1.25rem !important;
+    }
+    .catalogo-container-3d {
+        grid-template-columns: 1fr !important;
+        gap: 2.25rem !important;
+    }
+    .catalogo-heading {
+        font-size: 1.55rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    .catalogo-lead {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.75rem !important;
+    }
+    .catalogo-bullets-list {
+        gap: 1.25rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .bullet-icon {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+        font-size: 1.1rem !important;
+    }
+    .bullet-text h4 {
+        font-size: 0.95rem !important;
+    }
+    .bullet-text p {
+        font-size: 0.825rem !important;
+    }
+
+    /* Ajustes da Seção Responsabilidade Técnica (Autoridade) */
+    .autoridade-wrapper {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* Inverte a ordem no mobile: foto do engenheiro acima do texto */
+        gap: 2.5rem !important;
+    }
+    .autoridade-content .lead {
+        font-size: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.5 !important;
+    }
+    .qualificacoes {
+        gap: 1.25rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .qual-icon {
+        width: 2.75rem !important;
+        height: 2.75rem !important;
+        font-size: 1.25rem !important;
+    }
+    .qual-text h4 {
+        font-size: 0.95rem !important;
+    }
+    .qual-text p {
+        font-size: 0.85rem !important;
+    }
+    .perfil-card {
+        padding: 1.25rem !important;
+    }
+    .perfil-img-container {
+        height: 290px !important;
+    }
+    .perfil-body h3 {
+        font-size: 1.25rem !important;
+    }
+    .perfil-body .cargo {
+        font-size: 0.75rem !important;
+    }
+
+    /* Ajustes da Seção Quem Somos (Index) - Mobile */
+    .quem-somos-content {
+        text-align: left !important; /* Alinhamento à esquerda para leitura fluida e profissional no celular */
+    }
+    .quem-somos-content .subtitle {
+        margin: 0 0 0.5rem 0 !important; /* Alinha subtítulo à esquerda */
+    }
+    .quem-somos-content .lead-text {
+        font-size: 0.925rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1rem !important;
+    }
+    .quem-somos-content .desc-text {
+        font-size: 0.825rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .quem-somos-actions {
+        margin-top: 1.25rem !important;
+    }
+    .quem-somos-actions .btn {
+        width: 100% !important;
+    }
+
+    /* Ajustes da Seção FAQ */
+    .faq-question {
+        padding: 1.15rem 1.25rem !important;
+        font-size: 0.9rem !important;
+    }
+    .faq-answer-content {
+        padding: 0 1.25rem 1.15rem 1.25rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Ajustes da Subpágina de História (historia.html) */
+    .catalogo-intro-title {
+        font-size: 2rem !important;
+    }
+    .catalogo-intro-lead {
+        font-size: 0.95rem !important;
+    }
+
+    /* Centralização Completa do Rodapé no Celular */
+    .footer-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 3rem !important;
+    }
+    .footer-brand {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-brand .logo-link {
+        display: flex !important;
+        justify-content: center !important;
+        margin-bottom: 1.25rem !important;
+        width: 100% !important;
+    }
+    .footer-brand img[src*="pedreiro.png"] {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .footer-links ul {
+        align-items: center !important;
+    }
+    .footer-contact {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-contact-list {
+        align-items: center !important;
+    }
+    .footer-contact-list li {
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .footer-socials {
+        justify-content: center !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Micro-ajustes para telas muito pequenas */
+    .section-title {
+        font-size: 1.6rem !important;
+    }
+    .hero-title {
+        font-size: 2.3rem !important; /* Aumentado proporcionalmente para telas muito pequenas */
+    }
+    .cat-grid-label {
+        font-size: 0.55rem !important;
+        padding: 1rem 0.2rem 0.3rem !important;
+    }
+    .cat-grid-cta-overlay span {
+        font-size: 0.8rem !important;
+    }
+}
