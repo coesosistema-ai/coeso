@@ -3591,9 +3591,9 @@ h1, h2, h3, h4, h5, h6 {
         align-items: center !important;
         background: linear-gradient(to top, rgba(6, 11, 26, 0.95) 0%, rgba(6, 11, 26, 0.55) 45%, rgba(6, 11, 26, 0.15) 75%, rgba(6, 11, 26, 0) 100%),
                     url('imagens/logo/cam_mobile.webp') no-repeat center center !important; /* Leve degradê azul do filtro de baixo para cima */
-        background-size: contain !important; /* Enquadra a imagem por completo sem zoom lateral */
+        background-size: cover !important; /* Garante que a imagem preencha toda a tela do celular */
         background-color: #060b1a !important; /* Cor de fundo integrada oficial COESO */
-        background-attachment: fixed !important; /* Efeito paralaxe (fundo fixo) no mobile */
+        background-attachment: scroll !important; /* Corrige o bug histórico de renderização do background-attachment: fixed no mobile (iOS/Safari) */
     }
     .hero-overlay {
         display: none !important; /* Oculta overlay global para manter imagem totalmente nítida */
