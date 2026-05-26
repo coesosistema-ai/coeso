@@ -382,10 +382,36 @@
         <section id="quem-somos" class="quem-somos section-padding light-bg">
             <div class="container">
                 <div class="quem-somos-wrapper">
-                    <!-- Foto na esquerda -->
+                    <!-- Foto na esquerda (Carrossel Premium de Equipe) -->
                     <div class="quem-somos-visual scroll-reveal">
-                        <div class="quem-somos-img-box">
-                            <img src="imagens/coeso/escritorio.webp" alt="Sede da COESO Engenharia" class="quem-somos-img" width="1000" height="1000" decoding="async" loading="lazy">
+                        <div class="quem-somos-slider-container">
+                            <div class="equipe-slider" id="equipe-slider">
+                                <!-- Slide 1 -->
+                                <div class="equipe-slide active">
+                                    <img src="imagens/equipe/equipe.png" alt="Equipe de Frente COESO" class="equipe-slide-img" width="800" height="600" decoding="async">
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="equipe-slide">
+                                    <img src="imagens/equipe/perto.jpeg" alt="Equipe em Detalhe COESO" class="equipe-slide-img" width="800" height="600" decoding="async">
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="equipe-slide">
+                                    <img src="imagens/equipe/longe.png" alt="Operação COESO" class="equipe-slide-img" width="800" height="600" decoding="async">
+                                </div>
+                            </div>
+                            
+                            <!-- Controles Premium Translúcidos -->
+                            <button class="equipe-slider-btn prev" id="equipe-prev" aria-label="Slide anterior">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="equipe-slider-btn next" id="equipe-next" aria-label="Próximo slide">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Dots Indicadores -->
+                            <div class="equipe-slider-dots" id="equipe-dots"></div>
+
+                            <!-- Símbolo flutuante mantido normal -->
                             <div class="quem-somos-experience">
                                 <img src="imagens/logo/simbolo.webp" alt="Símbolo COESO" class="quem-somos-badge-img" width="1254" height="1254" decoding="async" loading="lazy">
                             </div>
@@ -396,12 +422,12 @@
                     <div class="quem-somos-content scroll-reveal" style="transition-delay: 0.15s;">
                         <span class="subtitle">Nossa Essência</span>
                         <h2 class="section-title text-dark">Quem <span class="text-serif-italic">Somos</span></h2>
-                        <p class="lead-text text-dark">Fundada com o propósito de redefinir os padrões de solidez e confiabilidade no setor da construção civil, a COESO consolidou-se como referência no fornecimento de soluções estruturais integradas.</p>
-                        <p class="desc-text text-muted">Unimos engenharia civil de alta performance, rigor técnico em cada dosagem de concreto usinado e precisão no desenvolvimento de peças pré-moldadas. Sob a liderança experiente do Engenheiro Chefe Jeferson Piccoli Costa, nossa missão vai além de fornecer insumos estruturais básicos: entregamos a segurança técnica e operacional necessárias para sustentar o crescimento de grandes obras residenciais, comerciais e industriais na região.</p>
+                        <p class="lead-text text-dark">A força da COESO é construída por pessoas. Esta é a nossa equipe de frente — os rostos que planejam, gerenciam e garantem a precisão técnica de cada projeto. Mas por trás de cada grande entrega, há um time completo de colaboradores de campo e operacionais que, nos bastidores, fazem tudo acontecer com maestria.</p>
+                        <p class="desc-text text-muted">Unimos engenharia civil de alta performance, rigor técnico na dosagem de concreto usinado e precisão no desenvolvimento de peças pré-moldadas. Cada colaborador desempenha um papel fundamental na execução de fundações fortes e estruturas seguras, blindando o cronograma e o orçamento dos nossos parceiros.</p>
                         
                         <div class="quem-somos-actions">
                             <a href="historia.html" class="btn btn-primary btn-large">
-                                Saiba mais
+                                Conheça nossa história
                             </a>
                         </div>
                     </div>

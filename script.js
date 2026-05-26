@@ -695,5 +695,114 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    // --- 12. Slider de Imagens da Seção Quem Somos (Equipe) ---
+    const equipeSlider = document.getElementById('equipe-slider');
+    if (equipeSlider) {
+        const slides = equipeSlider.querySelectorAll('.equipe-slide');
+        const prevBtn = document.getElementById('equipe-prev');
+        const nextBtn = document.getElementById('equipe-next');
+        const dotsContainer = document.getElementById('equipe-dots');
+        let currentSlideIndex = 0;
+        let slideInterval;
+
+        // Gerar dots dinamicamente
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (idx === 0) dot.classList.add('active');
+                dot.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSlide(idx);
+                    startAutoPlay();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentSlideIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentSlideIndex = 0;
+            } else {
+                currentSlideIndex = index;
+            }
+
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlideIndex);
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentSlideIndex);
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlideIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlideIndex - 1);
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            slideInterval = setInterval(nextSlide, 5000); // muda a cada 5 segundos
+        }
+
+        function stopAutoPlay() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                prevSlide();
+                startAutoPlay();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                nextSlide();
+                startAutoPlay();
+            });
+        }
+
+        // Swipe de Toque para Mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        equipeSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        equipeSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                nextSlide();
+                startAutoPlay();
+            } else if (touchEndX - touchStartX > threshold) {
+                prevSlide();
+                startAutoPlay();
+            }
+        }
+
+        // Iniciar Autoplay
+        startAutoPlay();
+    }
 });
 

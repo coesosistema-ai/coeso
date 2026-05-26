@@ -2980,32 +2980,124 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.quem-somos-img-box {
+.quem-somos-slider-container {
     position: relative;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
     border-radius: 20px;
-    overflow: visible;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--off-white-200);
+    background-color: var(--blue-dark-800);
+    overflow: visible;
 }
 
-.quem-somos-img {
+.equipe-slider {
+    position: relative;
     width: 100%;
-    height: 480px;
-    object-fit: cover;
+    aspect-ratio: 4 / 3;
     border-radius: 20px;
+    overflow: hidden;
+}
+
+.equipe-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+    background-color: var(--blue-dark-900);
+}
+
+.equipe-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.equipe-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Exibe a imagem completa sem cortar nenhuma pessoa! */
     display: block;
+    background-color: var(--blue-dark-800);
+}
+
+/* Controles Premium Translúcidos */
+.equipe-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: rgba(6, 11, 26, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.equipe-slider-btn:hover {
+    background: var(--blue-light-main);
+    color: var(--white);
+    border-color: var(--blue-light-main);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px var(--blue-light-glow);
+}
+
+.equipe-slider-btn.prev { left: -1.75rem; }
+.equipe-slider-btn.next { right: -1.75rem; }
+
+/* Dots Indicadores */
+.equipe-slider-dots {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+    background: rgba(6, 11, 26, 0.65);
+    padding: 6px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.equipe-slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
     transition: var(--transition-smooth);
 }
 
-.quem-somos-img-box:hover .quem-somos-img {
-    transform: scale(1.02);
+.equipe-slider-dots .dot.active {
+    background: var(--blue-light-main);
+    width: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px var(--blue-light-glow);
 }
 
 /* Glassmorphism Badge para o Símbolo oficial */
 .quem-somos-experience {
     position: absolute;
-    bottom: -10px;
-    right: -10px;
+    bottom: -15px;
+    right: -15px;
     background: transparent;
     backdrop-filter: none;
     border: none;
@@ -3015,11 +3107,12 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     box-shadow: none;
     animation: floating-experience 4s ease-in-out infinite;
+    z-index: 5;
 }
 
 .quem-somos-badge-img {
-    width: 124px;
-    height: 124px;
+    width: 105px;
+    height: 105px;
     object-fit: contain;
     display: block;
     filter: none;
@@ -3076,9 +3169,6 @@ h1, h2, h3, h4, h5, h6 {
     .quem-somos-wrapper {
         gap: 3rem;
     }
-    .quem-somos-img {
-        height: 380px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -3086,17 +3176,20 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr;
         gap: 3.5rem;
     }
-    .quem-somos-img {
-        height: 320px;
+    .quem-somos-slider-container {
+        max-width: 100%;
+    }
+    .equipe-slider-btn {
+        display: none;
     }
     .quem-somos-experience {
         bottom: -5px;
-        right: 5px;
+        right: -5px;
         padding: 0;
     }
     .quem-somos-badge-img {
-        width: 100px;
-        height: 100px;
+        width: 85px;
+        height: 85px;
     }
 }
 
