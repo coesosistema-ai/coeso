@@ -1,0 +1,17 @@
+# Arquivos de backup local (gerados pelos scripts de otimização de imagens)
+*.bak
+**/*.bak
+*.tmp
+**/*.tmp
+
+# Arquivos de sistema do Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Arquivos temporários de editores
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
