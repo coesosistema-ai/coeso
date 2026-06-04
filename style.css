@@ -1299,6 +1299,22 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--off-white-200);
 }
 
+.developer-credits {
+    font-size: 0.85rem;
+    color: var(--off-white-200);
+    opacity: 0.6;
+    transition: var(--transition-fast);
+}
+
+.developer-credits:hover {
+    opacity: 1;
+}
+
+.developer-credits a {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
 .nota-tecnica {
     font-size: 0.75rem;
     color: var(--blue-light-hover);
